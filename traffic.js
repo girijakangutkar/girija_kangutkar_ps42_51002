@@ -1,15 +1,23 @@
-function trafficLight(callback) {
-  setInterval(() => {
-    callback();
-  }, 4000);
+function trafficLight(color, callback) {
+  let count = 0;
+  let timer = setInterval(() => {
+    count++;
+    callback(count);
 
-  setTimeout(() => {
-    clearInterval();
-  }, 500);
+    if (count == 3) {
+      clearInterval(timer);
+    }
+  }, 1000);
 }
 
-function callingIt(color) {
-  console.log(color);
+function changeColor(count) {
+  if (count == 1) {
+    console.log("Red");
+  } else if (count == 2) {
+    console.log("Green");
+  } else {
+    console.log("Yellow");
+  }
 }
 
-trafficLight(callingIt);
+trafficLight("red", changeColor);
